@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
@@ -65,8 +65,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        if(!_isMoving)
-        transform.Rotate(_animator.angularVelocity / 10f);
+        if (!_isMoving)
+        {
+            transform.rotation *= _animator.deltaRotation;
+        }
 
         Vector3 velocity = _animator.deltaPosition / Time.deltaTime;
         velocity.y = _rigidbody.linearVelocity.y;
